@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lu.mapper.StudentMapper">
+    <!--<resultMap id="studentMap" type="com.lu.domain.Student">
+        <id property="id" column="id"/>
+        <result property="sName" column="sname"/>
+        <result property="age" column="age"/>
+        <result property="studentClass.id" column="scid"/>
+        <result property="studentClass.className" column="scname"/>
+    </resultMap>-->
+    <resultMap id="studentMap" type="com.lu.domain.Student">
+        <id property="id" column="id"/>
+        <result property="sName" column="sname"/>
+        <result property="age" column="age"/>
+        <association property="studentClass" javaType="com.lu.domain.StudentClass">
+            <id property="id" column="scid"/>
+            <result property="className" column="scname"/>
+        </association>
+
+    </resultMap>
+    <select id="list" resultMap="studentMap">
+        select s.id,s.sname,s.age,sc.id scid,sc.class_name scname from student s,student_class sc where s.class_id=sc.id;
+    </select>
+
+    <!--使用collection做关联查询时，关联表的主键名称要不相同，不然只能封装一条数据-->
+    <resultMap id="studentMap2" type="com.lu.domain.Student">
+        <id property="id" column="sid"/>
+        <result property="sName" column="sname"/>
+        <result property="age" column="age"/>
+        <collection property="courseList" ofType="com.lu.domain.Course">
+            <id property="id" column="cid"/>
+            <result property="courseName" column="course_name"/>
+        </collection>
+
+    </resultMap>
+
+    <select id="getById" resultMap="studentMap2">
+        select s.id sid,s.sname,s.age,c.id cid,c.course_name from student s left join course c on s.id = c.s_id where s.id=#{id};
+    </select>
+
+</mapper>

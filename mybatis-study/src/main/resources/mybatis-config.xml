@@ -2,9 +2,12 @@
 <!DOCTYPE configuration
         PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<!--配置添加的顺序，顺序不能错，不然配置文件报错-->
+<!--properties?,settings?,typeAliases?,typeHandlers?,objectFactory?,objectWrapperFactory?,
+reflectorFactory?,plugins?,environments?,databaseIdProvider?,mappers?-->
 <configuration>
     <properties resource="db.properties">
-      <!--<property name="password" value="123456"/>-->
+        <property name="password" value="123123"/>
         <!--<property name="org.apache.ibatis.parsing.PropertyParser.enable-default-value" value="true"/>--> <!-- 启用默认值特性 -->
     </properties>
     <!--<typeAliases>
@@ -36,5 +39,7 @@
     <!---->
     <mappers>
         <mapper resource="com/lu/mapper/UserMapper.xml"/>
+        <mapper resource="com/lu/mapper/StudentMapper.xml"/>
+        <!--<package name="com.lu.mapper"/>-->
     </mappers>
 </configuration>
