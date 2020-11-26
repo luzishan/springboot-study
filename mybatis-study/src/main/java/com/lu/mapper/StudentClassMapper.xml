@@ -3,5 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.lu.mapper.StudentClassMapper">
-
+<select id="getById" resultType="com.lu.domain.StudentClass">
+    select id,class_name className from student_class where s_id=#{id}
+</select>
 </mapper>

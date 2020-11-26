@@ -35,4 +35,25 @@ public class StudentTest {
         System.out.println(byId);
 
     }
+
+    @Test
+    public void getById3(){
+        StudentMapper mapper = MybatisUtil.getSqlSession().getMapper(StudentMapper.class);
+        Student byId = mapper.getById3(1);
+        /*List<Course> list = byId.getCourseList();
+        for(Course c : list){
+            System.out.println(c);
+        }*/
+        System.out.println(byId.getSName());
+        System.out.println(byId.getCourseList().get(0).getCourseName());
+
+    }
+
+    @Test
+    public void getByIdStep(){
+        StudentMapper mapper = MybatisUtil.getSqlSession().getMapper(StudentMapper.class);
+        Student byIdStep = mapper.getByIdStep(1);
+        System.out.println(byIdStep.getSName());
+        System.out.println(byIdStep.getStudentClass().getClassName());
+    }
 }

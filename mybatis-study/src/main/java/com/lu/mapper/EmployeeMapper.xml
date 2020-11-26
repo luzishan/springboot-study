@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lu.mapper.EmployeeMapper">
+    <!--
+    <where>:可以去除去if标签后面的and
+    -->
+    <select id="getById" resultType="com.lu.domain.Employee">
+        select * from employee where id = #{id}
+    </select>
+    <select id="whereList" resultType="com.lu.domain.Employee">
+        select * from employee
+        <where>
+            id=#{id}
+        </where>
+
+    </select>
+
+    <select id="ifList" resultType="com.lu.domain.Employee">
+        select * from employee
+        <where>
+            <if test="id != null and id != ''">
+                id = #{id}
+            </if>
+            <if test="name != null and name != ''">
+                and name = #{name}
+            </if>
+            <if test="age != null and age != ''">
+                and age = #{age}
+            </if>
+            <if test="address != null and address != ''">
+                and address = #{address}
+            </if>
+            <if test="phone != null and phone != ''">
+                and phone = #{phone}
+            </if>
+        </where>
+    </select>
+    <select id="trimList" resultType="com.lu.domain.Employee">
+        select * from employee
+        <trim prefix="where" prefixOverrides="and|or">
+            <if test="id != null and id != ''">
+                id = #{id}
+            </if>
+            <if test="name != null and name != ''">
+                and name = #{name}
+            </if>
+            <if test="age != null and age != ''">
+                and age = #{age}
+            </if>
+            <if test="address != null and address != ''">
+                and address = #{address}
+            </if>
+            <if test="phone != null and phone != ''">
+                and phone = #{phone}
+            </if>
+        </trim>
+    </select>
+    <select id="chooseWhenOtherwise" resultType="com.lu.domain.Employee">
+        select * from employee
+        <where>
+            <choose>
+                <when test="id != null and id != ''">
+                    id = #{id}
+                </when>
+                <when test="name != null and name != ''">
+                    name = #{name}
+                </when>
+                <when test="age != null and age != ''">
+                    age = #{age}
+                </when>
+                <when test="address != null and address != ''">
+                    address = #{address}
+                </when>
+                <when test="phone != null and phone != ''">
+                    phone = #{phone}
+                </when>
+                <otherwise>
+                    id = 1
+                </otherwise>
+            </choose>
+        </where>
+    </select>
+    <select id="foreachList" resultType="com.lu.domain.Employee">
+        select * from employee where id in
+
+        <foreach collection="list" item="item" open="(" close=")" separator=",">
+            #{item}
+        </foreach>
+
+    </select>
+
+    <select id="bindList" resultType="com.lu.domain.Employee">
+        <bind name="bindSql" value="'%'+str+'%'"/>
+        select * from employee where address like #{bindSql}
+    </select>
+
+    <update id="updateSql">
+        update employee
+        <set>
+            <if test="name != null and name != ''">
+                name = #{name},
+            </if>
+            <if test="age != null and age != ''">
+                age = #{age},
+            </if>
+            <if test="address != null and address != ''">
+                address = #{address},
+            </if>
+            <if test="phone != null and phone != ''">
+                phone = #{phone}
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+</mapper>

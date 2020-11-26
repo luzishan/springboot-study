@@ -15,7 +15,9 @@ reflectorFactory?,plugins?,environments?,databaseIdProvider?,mappers?-->
         <package name="com.lu.domain"/>
     </typeAliases>-->
     <settings>
-        <setting name="logImpl" value="STDOUT_LOGGING"/>
+        <setting name="logImpl" value="LOG4J"/>
+        <setting name="lazyLoadingEnabled" value="true"/>
+        <setting name="aggressiveLazyLoading" value="false"/>
     </settings>
     <!--配置数据源-->
     <environments default="dev">
@@ -38,8 +40,9 @@ reflectorFactory?,plugins?,environments?,databaseIdProvider?,mappers?-->
 
     <!---->
     <mappers>
-        <mapper resource="com/lu/mapper/UserMapper.xml"/>
+        <!--<mapper resource="com/lu/mapper/UserMapper.xml"/>
         <mapper resource="com/lu/mapper/StudentMapper.xml"/>
-        <!--<package name="com.lu.mapper"/>-->
+        <mapper resource="com/lu/mapper/CourseMapper.xml"/>-->
+         <package name="com.lu.mapper"/>
     </mappers>
 </configuration>

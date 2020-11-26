@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lu.mapper.CourseMapper">
+    <resultMap id="courseMap" type="com.lu.domain.Course">
+        <id property="id" column="id"/>
+        <result property="courseName" column="course_name"/>
+        <result property="sId" column="s_id"/>
+    </resultMap>
+    <select id="getByStudentId" resultMap="courseMap">
+        select * from course where s_id = #{id}
+    </select>
+</mapper>

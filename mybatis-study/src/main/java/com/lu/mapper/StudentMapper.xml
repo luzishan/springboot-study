@@ -15,8 +15,9 @@
         <result property="sName" column="sname"/>
         <result property="age" column="age"/>
         <association property="studentClass" javaType="com.lu.domain.StudentClass">
-            <id property="id" column="scid"/>
+            <id property="id" column="cid"/>
             <result property="className" column="scname"/>
+            <result property="sId" column="sid"/>
         </association>
 
     </resultMap>
@@ -30,14 +31,38 @@
         <result property="sName" column="sname"/>
         <result property="age" column="age"/>
         <collection property="courseList" ofType="com.lu.domain.Course">
-            <id property="id" column="cid"/>
-            <result property="courseName" column="course_name"/>
         </collection>
-
     </resultMap>
 
     <select id="getById" resultMap="studentMap2">
         select s.id sid,s.sname,s.age,c.id cid,c.course_name from student s left join course c on s.id = c.s_id where s.id=#{id};
+    </select>
+
+    <select id="getById3" resultMap="studentMap3">
+        select * from student where id=#{id};
+    </select>
+
+    <resultMap id="studentMap3" type="com.lu.domain.Student">
+        <id property="id" column="id"/>
+        <result property="sName" column="sname"/>
+        <result property="age" column="age"/>
+        <collection property="courseList" select="com.lu.mapper.CourseMapper.getByStudentId"
+                     column="id">
+        </collection>
+    </resultMap>
+
+
+    <resultMap id="studentStepMap" type="com.lu.domain.Student">
+        <id property="id" column="id"/>
+        <result property="sName" column="sname"/>
+        <result property="age" column="age"/>
+        <association property="studentClass" select="com.lu.mapper.StudentClassMapper.getById" column="id">
+
+        </association>
+    </resultMap>
+
+    <select id="getByIdStep" resultMap="studentStepMap">
+            select  * from student where id=#{id}
     </select>
 
 </mapper>
