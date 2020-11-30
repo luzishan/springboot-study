@@ -76,4 +76,16 @@ public class UserTest {
             System.out.println(user);
         }
     }
+
+    @Test
+    public void ehcacheTest(){
+        SqlSession sqlSession = MybatisUtil.getSqlSession();
+        UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+        User byId = mapper.getById(1L);
+        System.out.println(byId);
+        sqlSession.close();
+        UserMapper mapper1 = MybatisUtil.getSqlSession().getMapper(UserMapper.class);
+        User byId1 = mapper1.getById(1l);
+        System.out.println(byId1);
+    }
 }

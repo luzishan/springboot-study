@@ -23,5 +23,6 @@ public interface EmployeeMapper {
 
     public int updateSql(Employee employee);
 
+    public int deleteById(int id);
 
 }

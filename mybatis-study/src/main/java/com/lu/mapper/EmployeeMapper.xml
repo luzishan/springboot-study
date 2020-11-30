@@ -4,6 +4,20 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.lu.mapper.EmployeeMapper">
     <!--
+   eviction:缓存的回收策略
+       LRU（默认）、FIFO、SOFT、WEAK
+        flushInterval:缓存刷新间隔
+       缓存多长时间清空一次，默认不清空，设置一个毫秒值
+       true：只读：mybatis认为所有从缓存中获取数据的操作都是只读操作，不会修改数据
+                   mybatis为了加快获取速度，直接就会将数据在缓存中的引用交给用户。不安全，速度快
+       false（默认）：非只读：mybatis觉得获取的数据会被修改。
+                       mybatis会利用序列化与反序列化技术克隆一份新的数据给你。安全，速度慢
+       size：缓存存放多少元素
+       type=“”，指定自定义缓存的全类名.
+           实现Cache接口即可
+   -->
+    <cache type="org.mybatis.caches.ehcache.EhcacheCache"/>
+    <!--
     <where>:可以去除去if标签后面的and
     -->
     <select id="getById" resultType="com.lu.domain.Employee">
@@ -114,4 +128,8 @@
         </set>
         where id = #{id}
     </update>
+
+    <delete id="deleteById">
+        delete  from employee where id = #{id}
+    </delete>
 </mapper>

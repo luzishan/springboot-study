@@ -12,6 +12,8 @@
         <result property="version" column="version"/>
         <result property="delFlag" column="del_flag"/>
     </resultMap>
+    
+    <cache-ref namespace="com.lu.mapper.EmployeeMapper"/>
 
     <select id="getUserList" resultMap="userResultMap">
         select  * from user;
