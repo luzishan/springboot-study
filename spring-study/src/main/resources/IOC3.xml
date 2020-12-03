@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+   <bean id="animal01" class="com.lu.domain.Animal">
+       <property name="animalName" value="猫"/>
+       <property name="tags" value="4"/>
+   </bean>
+
+    <!--cat01对animal01只是引用属性值，并不是继承-->
+    <bean id="cat01" class="com.lu.domain.Cat" parent="animal01">
+        <property name="nickName" value="加菲猫"/>
+    </bean>
+</beans>

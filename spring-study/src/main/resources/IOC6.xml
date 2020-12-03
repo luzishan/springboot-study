@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+    <!--xml自动装配-->
+    <bean id="carColor11" class="com.lu.domain.CarColor">
+        <property name="name" value="红色"/>
+    </bean>
+
+    <!--
+     autowire="byName":根据car里面carcolor的名称进行装配
+     autowire="byType":根据car里面carcolor的类型进行装配，当有多个类型为carcolor的bean报错
+     autowire="constructor"：根据car的构造器进行装配，
+     如果构造器参数和spring容器中的bean的id不一致则装配不上
+    -->
+    <bean id="car" class="com.lu.domain.Car" autowire="constructor">
+        <property name="name" value="baoma"/>
+        <property name="price" value="200000"/>
+    </bean>
+
+</beans>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+    <!--静态工厂创建bean-->
+    <bean id="getBook" class="com.lu.factory.StaticFactoryBean" factory-method="getStaticBook">
+        <constructor-arg name="author" value="吴承恩"/>
+    </bean>
+
+    <!--实例工厂创建bean-->
+    <bean id="getInstanceBook" class="com.lu.factory.InstanceFactoryBean">
+    </bean>
+    <bean id="instancebook" factory-bean="getInstanceBook" factory-method="getInstanceBook">
+        <constructor-arg name="author" value="吴承恩2"/>
+    </bean>
+
+    <!--实现spring的自己的FactoryBean-->
+    <bean id="springFactoryBean" class="com.lu.factory.MyFactoryBean">
+
+    </bean>
+</beans>

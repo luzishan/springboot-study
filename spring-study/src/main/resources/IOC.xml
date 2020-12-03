@@ -9,6 +9,32 @@ http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
         <property name="name" value="张三"/>
         <property name="address" value="合肥"/>
         <property name="age" value="22"/>
+        <property name="book" ref="book01"/>
     </bean>
+
+    <bean id="userTest01" class="com.lu.domain.UserInfo">
+        <property name="id" value="1"/>
+        <property name="name" value="张三"/>
+        <property name="address" value="合肥"/>
+        <property name="age" value="22"/>
+        <property name="book" ref="book01"/>
+    </bean>
+
+    <bean id="userTest02" class="com.lu.domain.UserInfo" scope="prototype">
+        <property name="id" value="1"/>
+        <property name="name" value="张三"/>
+        <property name="address" value="合肥02"/>
+        <property name="age" value="22"/>
+        <property name="book" ref="book01"/>
+    </bean>
+
+
+    <!--构造器给对象的属性赋值-->
+    <bean id="book01" class="com.lu.domain.Book">
+        <constructor-arg value="西游记"/>
+        <constructor-arg value="20"/>
+    </bean>
+
+
 
 </beans>

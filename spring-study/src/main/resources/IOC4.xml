@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+    <!--scope="prototype"这个是必要的-->
+    <bean id="car01" class="com.lu.domain.Car" init-method="carInit" destroy-method="carDestroy" scope="prototype">
+        <property name="name" value="斯柯达"/>
+        <property name="price" value="125000"/>
+    </bean>
+    <bean class="com.lu.service.MyBeanPostProcessor">
+
+    </bean>
+</beans>
