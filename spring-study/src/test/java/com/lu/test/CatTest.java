@@ -13,10 +13,11 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  */
 public class CatTest {
 
-    ApplicationContext applicationContext = new ClassPathXmlApplicationContext("classpath:IOC3.xml");
+
 
     @Test
     public void cat01(){
+        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("classpath:IOC3.xml");
         Cat cat01 = (Cat)applicationContext.getBean("cat01");
         System.out.println(cat01);
     }

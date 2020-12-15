@@ -2,13 +2,18 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
-
+       xmlns:tx="http://www.springframework.org/schema/tx"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
 http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
 http://www.springframework.org/schema/context
 http://www.springframework.org/schema/context/spring-context-2.5.xsd
+http://www.springframework.org/schema/tx
+http://www.springframework.org/schema/tx/spring-tx.xsd
 "
 >
+
+    <!--开启包的注解扫描-->
+    <context:component-scan base-package="com.lu"/>
 
     <context:property-placeholder location="classpath:db.properties"/>
 
@@ -18,4 +23,27 @@ http://www.springframework.org/schema/context/spring-context-2.5.xsd
         <property name="jdbcUrl" value="${jdbc.url}"/>
         <property name="driverClass" value="${jdbc.driver}"/>
     </bean>
+
+    <!-- 创建SqlSessionFactory MyBatis会话工厂对象 -->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <!-- 注入数据源 -->
+        <property name="dataSource" ref="dataSource" />
+        <!-- 读取映射文件 ,MyBatis的纯注解不用配置 -->
+    </bean>
+
+    <!-- 4) 搜索有哪些 mapper 实现类，把mapper接口自动配置成 spring 中的 <bean>-->
+    <bean id="scannerConfigurer" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+
+        <!-- name="basePackage":(起始)包名, 从这个包开始扫描-->
+        <property name="basePackage" value="com.lu"/>
+
+    </bean>
+    <!--开启事物-->
+    <!-- 配置事务管理器 -->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <!-- 启用事务注解 -->
+    <tx:annotation-driven transaction-manager="transactionManager"/>
 </beans>

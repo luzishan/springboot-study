@@ -1,6 +1,6 @@
 package com.lu.test;
 
-import com.lu.domain.Book;
+import com.lu.domain.BookBean;
 import com.lu.domain.UserInfo;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
@@ -26,7 +26,7 @@ public class UserTest {
 
     @Test
     public void book01(){
-        Book book01 = (Book)applicationContext.getBean("book01");
+        BookBean book01 = (BookBean)applicationContext.getBean("book01");
         System.out.println(book01);
     }
 

@@ -1,6 +1,6 @@
 package com.lu.test;
 
-import com.lu.domain.Book;
+import com.lu.domain.BookBean;
 import com.lu.domain.Cat;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
@@ -17,13 +17,13 @@ public class BookTest {
 
     @Test
     public void getStaticBook(){
-        Book getBook = (Book)applicationContext.getBean("getBook");
+        BookBean getBook = (BookBean)applicationContext.getBean("getBook");
         System.out.println(getBook);
     }
 
     @Test
     public void instancebook(){
-        Book instancebook = (Book)applicationContext.getBean("instancebook");
+        BookBean instancebook = (BookBean)applicationContext.getBean("instancebook");
         System.out.println(instancebook);
     }
 

@@ -1,6 +1,6 @@
 package com.lu.factory;
 
-import com.lu.domain.Book;
+import com.lu.domain.BookBean;
 
 /**
  * 实例工厂创建对象
@@ -11,9 +11,9 @@ import com.lu.domain.Book;
  */
 public class InstanceFactoryBean {
 
-    public Book getInstanceBook(String author) {
+    public BookBean getInstanceBook(String author) {
         System.out.println("实例工厂创建对象~~~");
-        Book book = new Book();
+        BookBean book = new BookBean();
         book.setAuthor(author);
         book.setBookName("西游记");
         book.setPrice(30);

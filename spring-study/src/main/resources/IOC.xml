@@ -30,7 +30,7 @@ http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
 
 
     <!--构造器给对象的属性赋值-->
-    <bean id="book01" class="com.lu.domain.Book">
+    <bean id="book01" class="com.lu.domain.BookBean">
         <constructor-arg value="西游记"/>
         <constructor-arg value="20"/>
     </bean>

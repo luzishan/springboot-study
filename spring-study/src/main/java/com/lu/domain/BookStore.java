@@ -9,16 +9,14 @@ import lombok.NoArgsConstructor;
  *
  * @author lzs
  * @version 1.0
- * @date 2020/12/14 15:05
+ * @date 2020/12/14 15:06
  */
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
-public class Book {
+@AllArgsConstructor
+public class BookStore {
 
     private int id;
 
-    private String bookName;
-
-    private int bookPrice;
+    private int number;
 }

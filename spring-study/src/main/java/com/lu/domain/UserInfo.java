@@ -23,7 +23,7 @@ public class UserInfo {
 
     private int age;
 
-    private Book book;
+    private BookBean book;
 
 
 }
