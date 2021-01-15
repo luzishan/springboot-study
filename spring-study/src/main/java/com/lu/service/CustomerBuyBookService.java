@@ -28,7 +28,7 @@ public class CustomerBuyBookService {
     @Autowired
     private CustomerMapper customerMapper;
 
-    /*
+    /**
      * rollbackFor属性：	该属性用于设置需要进行回滚的异常类数组，当方法中抛出指定异常数组中的异常时，则进行事务回滚。
      * 例如 指定单一异常类：@Transactional(rollbackFor=RuntimeException.class)
      * 指定多个异常类：@Transactional(rollbackFor={RuntimeException.class,Exception.class})
@@ -62,7 +62,7 @@ public class CustomerBuyBookService {
         updateCustomerCount();
     }
 
-    //@Transactional(propagation = Propagation.REQUIRES_NEW)
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
     public void updateBookStoreNumber() {
         bookStoreMapper.updateBookStoreNumber(1, 1);
     }
